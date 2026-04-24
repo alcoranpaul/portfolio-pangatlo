@@ -1,15 +1,7 @@
-import pool from '$lib/server/db';
+import { handleRequest } from '$lib/server/api';
+import { getProjects } from '$lib/server/queries';
+import { projects } from '$lib/stores/portfolio';
 
 export async function GET() {
-    try {
-        const result = await pool.query('SELECT * FROM tags');
-        return new Response(JSON.stringify(result.rows), {
-            headers: { 'Content-Type': 'application/json' }
-        });
-    } catch (error) {
-        return new Response(JSON.stringify({ error: String(error) }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' }
-        });
-    }
+    return handleRequest(getProjects, projects);
 }
