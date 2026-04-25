@@ -9,11 +9,13 @@
 
 <button class="card" onclick={() => onSelect(item)}>
 	<div class="image">
-		<!-- {#if item.image_url}
-			<img src={item.image_url} alt={item.title} />
-		{:else} -->
-		<img class="placeholder" src="https://picsum.photos/seed/{item.id}/400/225" alt={item.title} />
-		<!-- {/if} -->
+		<img
+			src="/api/files/image/{item.image_url?.split('/').pop()}"
+			alt={item.title}
+			onerror={(e) =>
+				((e.currentTarget as HTMLImageElement).src =
+					`https://picsum.photos/seed/${item.id}/400/225`)}
+		/>
 	</div>
 	<div class="details">
 		<p class="title">{item.title}</p>
@@ -61,13 +63,6 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-
-	.placeholder {
-		width: 100%;
-		height: 100%;
-		background: var(--color-bg-secondary);
-		border-bottom: 0.5px solid var(--color-border);
 	}
 
 	.details {
