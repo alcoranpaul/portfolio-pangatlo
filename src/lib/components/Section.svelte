@@ -3,7 +3,7 @@
 </script>
 
 <section {id}>
-	<p class="section-label">{title}</p>
+	<h2 class="section-label">{title}</h2>
 	{@render children()}
 </section>
 

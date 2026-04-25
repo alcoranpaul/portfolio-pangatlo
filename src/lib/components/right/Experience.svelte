@@ -1,9 +1,19 @@
 <script lang="ts">
 	import Section from '$lib/components/Section.svelte';
+	import type { Experience } from '$lib/types';
+	import ExperienceItem from '$lib/components/experience/ExperienceItem.svelte';
+
+	const {
+		experience,
+		onSelect
+	}: {
+		experience: Experience[];
+		onSelect: (item: Experience) => void;
+	} = $props();
 </script>
 
 <Section id="experience" title="Experience">
-	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta sapiente odio consequuntur,
-	voluptas repellat maxime facere sint dicta ipsa quod consectetur voluptates voluptatum laudantium
-	fugit! Ipsum assumenda ut explicabo dolor.
+	{#each experience as item (item.id)}
+		<ExperienceItem {item} {onSelect} />
+	{/each}
 </Section>
