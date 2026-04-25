@@ -7,6 +7,7 @@
 	import Projects from '$lib/components/right/Projects.svelte';
 	import Skills from '$lib/components/right/Skills.svelte';
 	import type { Experience as ExperienceType, Project } from '$lib/types';
+	import ProjectDetail from '$lib/components/project/ProjectDetail.svelte';
 
 	type Selected =
 		| { type: 'experience'; item: ExperienceType }
@@ -26,12 +27,17 @@
 	<section class="right">
 		{#if selected?.type === 'experience'}
 			<ExperienceDetail item={selected.item} onBack={() => (selected = null)} />
+		{:else if selected?.type === 'project'}
+			<ProjectDetail item={selected.item} onBack={() => (selected = null)} />
 		{:else}
 			<Experience
 				experience={data.experience}
 				onSelect={(item: ExperienceType) => (selected = { type: 'experience', item })}
 			/>
-			<Projects />
+			<Projects
+				projects={data.projects}
+				onSelect={(item: Project) => (selected = { type: 'project', item })}
+			/>
 			<Skills />
 		{/if}
 	</section>

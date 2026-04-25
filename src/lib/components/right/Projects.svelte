@@ -1,9 +1,29 @@
 <script lang="ts">
 	import Section from '$lib/components/common/Section.svelte';
+	import ProjectItem from '$lib/components/project/ProjectItem.svelte';
+	import type { Project } from '$lib/types';
+
+	const {
+		projects,
+		onSelect
+	}: {
+		projects: Project[];
+		onSelect: (item: Project) => void;
+	} = $props();
 </script>
 
 <Section id="projects" title="Projects">
-	Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi debitis voluptas repudiandae rerum
-	iste dolores officia dolore blanditiis, possimus, omnis ipsa ipsam, ab tempora aliquam quo illum
-	voluptatum odit molestiae?
+	<div class="grid">
+		{#each projects as item (item.id)}
+			<ProjectItem {item} {onSelect} />
+		{/each}
+	</div>
 </Section>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+	}
+</style>

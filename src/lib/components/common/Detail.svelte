@@ -1,7 +1,7 @@
 <script lang="ts">
 	const { title, subtitle, description, techStack, onBack } = $props<{
 		title: string;
-		subtitle: string;
+		subtitle?: string;
 		description: string;
 		techStack: string[];
 		onBack: () => void;
@@ -11,7 +11,9 @@
 <div class="detail">
 	<button class="back" onclick={onBack}>← Back</button>
 	<h2 class="title">{title}</h2>
-	<p class="subtitle">{subtitle}</p>
+	{#if subtitle}
+		<p class="subtitle">{subtitle}</p>
+	{/if}
 	<p class="desc">{description}</p>
 	<div class="tags">
 		{#each techStack as tech (tech)}
