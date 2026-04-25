@@ -36,6 +36,7 @@
 			/>
 			<Projects
 				projects={data.projects}
+				tags={data.tags}
 				onSelect={(item: Project) => (selected = { type: 'project', item })}
 			/>
 			<Skills />

@@ -9,15 +9,11 @@
 
 <button class="card" onclick={() => onSelect(item)}>
 	<div class="image">
-		{#if item.image_url}
+		<!-- {#if item.image_url}
 			<img src={item.image_url} alt={item.title} />
-		{:else}
-			<img
-				class="placeholder"
-				src="https://picsum.photos/seed/{item.id}/400/225"
-				alt={item.title}
-			/>
-		{/if}
+		{:else} -->
+		<img class="placeholder" src="https://picsum.photos/seed/{item.id}/400/225" alt={item.title} />
+		<!-- {/if} -->
 	</div>
 	<div class="details">
 		<p class="title">{item.title}</p>
